@@ -4,7 +4,10 @@ import { loadStripe } from "@stripe/stripe-js"
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || "")
 
 // API base URL
-const API_URL = "http://localhost:3001"
+const API_URL =  process.env.REACT_APP_API_URL;
+if (!API_URL) {
+  console.error("API_URL is not defined. Check your .env file!");
+}
 
 /**
  * Create a checkout session with Stripe
